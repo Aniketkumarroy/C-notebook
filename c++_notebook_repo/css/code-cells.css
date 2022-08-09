@@ -1,0 +1,118 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+.code-cell{
+    /* border: 2px solid rgb(32, 237, 32); */
+    margin: 40px 40px 10px 10px; /* we will have margin */
+    width: calc(100% - 50px); /* calculating width which is full width of its parent - its margin(10px for left + 40px for right) */
+    display: flex; /* making it a flex container */
+    flex-direction: row; /* we want to keep our button container and input-output container alligned in a row */
+}
+.code-cell-btn{
+    /* border: 2px solid red; */
+    border-left: 1px solid white;
+    width: 50px;
+    height: 70px;
+}
+.code-cell-btn img{
+    width: 25px; /* setting width of both run icon and buffering-icon.gif */
+}
+.code-cell-btn button{
+    background-color: transparent;
+    margin: 5px 0px 0px 5px;
+    border: none;
+    border-radius: 5px;
+}
+.running-icon{
+    display: none; /* until the button is not active, only run icon will show */
+}
+.code-cell-btn button:hover{
+    background-color: gray;
+    cursor: pointer;
+}
+.code-cell-btn button:active{
+    background-color: transparent;
+}
+.code-cell-btn button:active .run-icon{
+    display: none; /* as button is active run icon is not needed */
+}
+.code-cell-btn button:active .running-icon{
+    display: inline; /* instead now we will show the buffering-icon.gif */
+    filter: invert(100%); /* changing its black colour to white foe better visibility */
+}
+.code-cell-other-util-btn img{
+    width: 30px; /* width of image icons of our button */
+
+}
+.code-cell-other-util-btn button{ /* styling of our buttons */
+    background-color: transparent;
+    border: none;
+    padding: 0px 10px;
+}
+.code-cell-other-util-btn{
+    position: absolute; /* we need to set the position of our button container w.r.t. its parent */
+    top: -20px;
+    right: 50px;
+    z-index: 4;
+    background-color: black;
+    border: 1px solid white;
+    /* display: none; */
+}
+.code-cell-other-util-btn button:hover{
+    cursor: pointer;
+}
+.code-cell-other-util-btn button:hover > img{ /* during hovering over the buttons, the colour of button should change */
+    filter: invert(50%) sepia(94%) saturate(473%) hue-rotate(72deg) brightness(117%) contrast(100%);
+}
+.code-cell-other-util-btn button:active > img{ /* also the icon image should shrink a bit */
+    padding: 3px
+}
+
+
+
+.code-cell-input-output{
+    /* border: 2px solid blue; */
+    width: calc(100% - 50px); /* caculating width which is total width of parent - width of button container */
+    position: relative; /* we are setting position of .code-input and .highlight-area w.r.t. to its parent, that's why use it. 
+    mujhe khud nhi pta kyun par yaha se refer kiya:- https://stackoverflow.com/questions/5209814/can-i-position-an-element-fixed-relative-to-parent 
+    main aim tha ki .code-input aur .highlight-area perfectly ek ke upar overlap kare, ishliye dono ka position same rakha hai w.r.t 
+    their parent i.e. .code-cell-input-output
+    dono ka position parent container ke respect mai same rakhne ki jo vidhi maine use ki hai woh yaha se refer kiya hai:-
+    https://css-tricks.com/creating-an-editable-textarea-that-supports-syntax-highlighted-code/ */
+}
+.code-input{
+    position: relative; /* mujhe nhi pta ki yaha relative kyun hoga, maine absolute daala tha .highlight-area ki tarah lekin fir
+    ek bug aa gya, textarea ke saath saath iska parent container(.code-cell-input-output) auto-resize nhi ho rha tha toh Shreyansh
+    ko bulaya toh usne position:relative; suggest kiya */
+    top: 0px; /* setting vertical position */
+    left: 0px; /* setting horizontal position */
+    z-index: 1; /* this should be more than z-index of .highlight-area, refer:-  https://css-tricks.com/creating-an-editable-textarea-that-supports-syntax-highlighted-code/ */
+    width: 100%; /* taking full width of parent */
+    min-height: 70px; /* minimum height, baad mai jab contain overflow hoga to auto-resize ho jayega javascript ki help se */
+    resize: none; /* we don't want to resize the container using mouse as set default in textarea */
+    font-size: 25px;
+    color: transparent; /* colour is transparent so that the highlighted code is visible through it as pre tag is below textarea*/
+    background-color: transparent; /* colour is transparent so that the highlighted code is visible through it */
+    caret-color: white; /* cursor colour */
+    outline: none;
+    padding: 0px 20px;
+    border: 1px solid white;
+}
+.highlight-area{
+    position: absolute; /* refer:- https://css-tricks.com/creating-an-editable-textarea-that-supports-syntax-highlighted-code/ */
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+    width: 100%;
+    min-height: 70px;
+    font-size: 25px;
+    padding: 0px 20px;
+}
+.code-input:focus{
+    border: 3px solid rgb(32, 237, 32);
+}
+.code-input:focus ~ .output{
+    border: 3px solid red;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C++</title>
+    <link rel="stylesheet" href="../css/screentop.css"> <!-- css for our topmost portion of our app -->
+    <link rel="stylesheet" href="../css/contents.css"> <!-- css for the workspace -->
+    <link rel="stylesheet" href="../css/code-cells.css"> <!-- css for styling code cell -->
+    <link rel="stylesheet" href="../highlight/styles/stackoverflow-dark.min.css"> <!-- css for code highlighting(try other themes in ../highlight/styles/ too) -->
+</head>
+<body>
+    <!-- first we will create the topmost portion of our app which will contain our app logo and app name -->
+    <!-- I have used the c++ logo for our app but if you get a better logo for it then please improve in -->
+    <div class="screentop">
+        <img id="notebook-logo" src="../images/logo.png" alt="c++ logo">
+        <h1 id="application-name">iCnb++</h1>
+    </div>
+    <!-- -------------------------------- our screentop container ends ------------------------------------ -->
+
+    <!-- now we will create the navvigation menu to provide user different options for manipulating the app and its environment -->
+    <header class="nav-bar">
+        <ul>
+            <li>File</li>
+            <li>Edit</li>
+            <li>view</li>
+        </ul>
+    </header>
+    <!-- ---------------------------------- our navigation bar container ends -------------------------------------------------- -->
+
+    <!-- now we will create the workspace container of our app which will contain coding area, file explorer, buttons e.t.c. -->
+    <div class="workspace">
+        <!---------- side menu options --------------->
+        <div class="side-nav">
+            <img class="side-nav-icons" src="../images/file-icon.png" alt="open explorer">
+            <img class="side-nav-icons" src="../images/search-icon.png" alt="search">
+            <img class="side-nav-icons" src="../images/play-icon.png" alt="play">
+        </div>
+        <!-------- side menu ends -------------------->
+
+        <!-- our editor area, i.e. the area which will contain code cells and run, stop e.t.c buttons -->
+        <div class="editor">
+            <!-- topmost of editor, will contain buttons like run, stop e.t.c and also a language select area in future versions(c/c++) -->
+            <div class="options">
+                <button title="add code cell" class="btn">
+                    <img class="code-icon-btn-img" src="../images/add-icon.png" alt="add code cells">
+                    Code
+                </button>
+                <button title="add markdown cell" class="btn">
+                    <img class="code-icon-btn-img" src="../images/add-icon.png" alt="add markdown cells">
+                    Markdown
+                </button>
+                <button title="run all cells" class="btn">
+                    <img class="code-icon-btn-img" src="../images/runall-icon.png" alt="run all cells">
+                    Run all
+                </button>
+                <button title="Interrupt running cell" class="btn">
+                    <img class="code-icon-btn-img" src="../images/interrupt-icon.png" alt="Interrupt">
+                    Interrupt
+                </button>
+                <button title="clear output of all cells" class="btn">
+                    <img class="code-icon-btn-img" src="../images/clean-icon.png" alt="clean output of cells">
+                    Clear output of all cells
+                </button>
+                <button title="refresh notebook" class="btn">
+                    <img class="code-icon-btn-img" src="../images/refresh-icon.png" alt="Refresh">
+                    Refresh
+                </button>
+            </div>
+            <!------------------------------------------------ our options container ends ------------------------------------------>
+
+            <!---------- our first code cell(it is the very first cell of our editor) ------------------------->
+            <div class="code-cell">
+                <!-- our run button container to run code cell -->
+                <div class="code-cell-btn">
+                    <button>
+                        <img title="run" class="run-icon" src="../images/play-icon.png" alt="run"> <!-- run button icon -->
+                        <img title="running" class="running-icon" src="../images/loading-icon.gif" alt="running"> <!-- buffering icon -->
+                    </button>
+                </div>
+                <!-- run button container ends -->
+
+                <!-- this will contain both our input and output blocks -->
+                <div class="code-cell-input-output">
+                    <!-- some more additional utilities buttons to be kept at top right of each cell -->
+                    <div class="code-cell-other-util-btn">
+                        <button title="clean output of cell">
+                            <img src="../images/clean-icon-white.png" alt="clean output">
+                        </button>
+                        <button title="delete cell">
+                            <img src="../images/delete-icon.png" alt="delete cell">
+                        </button>
+                        <button title="add markdown cell">
+                            <img src="../images/markdown-cell.png" alt="add markdown cell">
+                        </button>
+                        <button title="add code cell">
+                            <img src="../images/code-cell.png" alt="add code cell">
+                        </button>
+                    </div>
+                    <!-- additional utilities buttons container ends -->
+                    
+                    <!-- this is the input part, code will be enterred in textarea and pre > code tag will be used for syntax highlighting -->
+                    <textarea class="code-input" wrap="off" cols="" rows="2" oninput="update(this.value);"></textarea>
+                    <pre class="highlight-area">
+                        <code class="highlighted-code highlight-area language-cpp"></code>
+                    </pre>
+                    <!-- input part ends -->
+
+                    <!-- this is our output container, any output of the above code cell should be put inside it -->
+                    <div class="output"></div>
+                    <!-- output container ends -->
+                </div>
+                <!-- input output block container ends -->
+            </div>
+            <!-- -------------------------------------- our code cell ends -------------------------------------- -->
+        </div>
+        <!-------------------------------- our editor container ends ---------------------------------->
+    </div>
+    <!-- --------------------------------- our workspace container ends --------------------------------------------------- -->
+    <script src="../js/code-cell.js"></script> <!-- javascript code for handling code cells -->
+    <script src="../highlight/highlight.min.js"></script> <!-- javascript for syntax highlighting -->
+</body>
+</html>

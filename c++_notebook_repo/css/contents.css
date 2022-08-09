@@ -1,0 +1,60 @@
+/* please uncomment line no 17, 35 and 36 and see how the app is looking and which is more better(this lines commented or uncommented) */
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+.workspace{
+    width: 100%; /* workspace will take whole width of screen since it will contain both editor and side nav bar. in future versions we will also include file explorer in it */
+    height: calc(100vh - 4rem); /* remaining height of screen, whole height of screen - height taken by screentop and nav-bar */
+    display: flex; /* since we need to place our side nav bar and editor side by side in a row */
+    flex-direction: row; /* alligning side nav bar and editor along the row */
+}
+.side-nav{
+    width: 60px; /* we will give a small width to it */
+    height: 100%; /* same height as our workspace */
+    background-color: rgb(72, 71, 71);
+    /* border: 2px solid rgb(32, 237, 32); */
+}
+.side-nav-icons{
+    width: 100%; /* size of icons according to size of side nav bar */
+    padding: 10px;
+}
+.side-nav-icons:hover{
+    cursor: pointer;
+    border-left: 3px solid rgb(32, 237, 32);
+    border-top: 3px solid rgb(32, 237, 32);
+}
+.side-nav-icons:active{
+    border: none;
+}
+.editor{
+    width: calc(100% - 60px); /* this will take the remaining width of workspace(whole workspace width - width taken by side nav bar) */
+    height: 100%; /* same height as our workspace */
+    overflow: auto; /* so that our editor container automatically add a scroll to accomodate extra code cells if they overflow */
+    /* border: 2px solid red; */
+    /* margin-left: 2px; */
+}
+.options{
+    width: 100%; /* it will take full width of our editor */
+}
+.btn{ /* styling our buttons in top of our editor */
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    background-color: transparent;
+    border-radius: 5px;
+    border: none;
+    margin: 5px 0px 5px 20px;
+    padding: 5px;
+}
+.btn:hover{
+    cursor: pointer;
+    background-color: gray;
+}
+.code-icon-btn-img{
+    width: 20px; /* setting width of images used in our editor top buttons */
+}
+.btn:active{
+    background-color: transparent;
+}

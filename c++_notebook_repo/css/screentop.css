@@ -1,0 +1,39 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{  /* for body colour */
+    background-color: black;
+}
+.screentop{
+    background-color: rgb(49, 48, 48);
+    width: 100%;  /* width of our screentop should expand to the whole width of the screen */
+}
+#notebook-logo{
+    position: absolute; /* since we want set the position of our logo by top property, so that logo will not throw our block element 'application-name' to new line */
+    top: 0;
+    width: 2rem; /* setting width w.r.t. parent */
+    border-radius: 5px;
+}
+#application-name{
+    text-align: center; /* centerring our application name inside the block element */
+    color: white;
+    /* width: 200px;
+    margin: auto; */
+}
+.nav-bar ul{
+    display: flex; /* we want our ul to ul to store the list items in a single row, so we will use its flex property */
+    flex-direction: row; /* alligning list items in a row */
+    background-color: rgb(18, 16, 16);
+}
+.nav-bar li{
+    color: white;
+    list-style: none; /* removing dots */
+    padding: 2px;
+    margin-right: 10px; /* having space between list items */
+}
+.nav-bar li:hover{
+    cursor: pointer;
+    color: aqua;
+}
