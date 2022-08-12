@@ -43,11 +43,11 @@
         <div class="editor">
             <!-- topmost of editor, will contain buttons like run, stop e.t.c and also a language select area in future versions(c/c++) -->
             <div class="options">
-                <button title="add code cell" class="btn">
+                <button title="add code cell" class="btn" onclick="add_cells_below();"> <!-- this function will add extra code cells below at the end of the contents of editor container -->
                     <img class="code-icon-btn-img" src="../images/add-icon.png" alt="add code cells">
                     Code
                 </button>
-                <button title="add markdown cell" class="btn">
+                <button title="add markdown cell" class="btn" onclick="add_markdown_cell();"> <!-- this function will add extra markdown cells below at the end of the contents of editor container -->
                     <img class="code-icon-btn-img" src="../images/add-icon.png" alt="add markdown cells">
                     Markdown
                 </button>
@@ -69,11 +69,11 @@
                 </button>
             </div>
             <!------------------------------------------------ our options container ends ------------------------------------------>
-
+            
             <!---------- our first code cell(it is the very first cell of our editor) ------------------------->
-            <div class="code-cell">
+            <div id ="code-cell-1" class="code-cell" onmouseover="additional_utilities(this.id,'initial');" onmouseleave="additional_utilities(this.id,'none');"> <!-- this onmouseover and onmouseleave are for mouse hover detection -->
                 <!-- our run button container to run code cell -->
-                <div class="code-cell-btn">
+                <div id="code-cell-btn-1" class="code-cell-btn"> <!-- since this is inside code-cell-1, so 1 is appended at the last of the class name to make a unique id -->
                     <button>
                         <img title="run" class="run-icon" src="../images/play-icon.png" alt="run"> <!-- run button icon -->
                         <img title="running" class="running-icon" src="../images/loading-icon.gif" alt="running"> <!-- buffering icon -->
@@ -82,33 +82,35 @@
                 <!-- run button container ends -->
 
                 <!-- this will contain both our input and output blocks -->
-                <div class="code-cell-input-output">
+                <div id="code-cell-input-output-1" class="code-cell-input-output"> <!-- since this is inside code-cell-1, so 1 is appended at the last of the class name to make a unique id -->
                     <!-- some more additional utilities buttons to be kept at top right of each cell -->
-                    <div class="code-cell-other-util-btn">
+                    <div id="code-cell-other-util-btn-1" class="code-cell-other-util-btn"> <!-- since this is inside code-cell-1, so 1 is appended at the last of the class name to make a unique id -->
                         <button title="clean output of cell">
                             <img src="../images/clean-icon-white.png" alt="clean output">
                         </button>
-                        <button title="delete cell">
+                        <button title="delete cell" onclick="delete_code_cell(this.parentNode.id);"> <!-- this will delete this code cell -->
                             <img src="../images/delete-icon.png" alt="delete cell">
                         </button>
                         <button title="add markdown cell">
                             <img src="../images/markdown-cell.png" alt="add markdown cell">
                         </button>
-                        <button title="add code cell">
+                        <button title="toggle code editing" onclick="toggle_code_edit(this.parentNode.id);"> <!-- this will toggle the editable property of the input cell -->
                             <img src="../images/code-cell.png" alt="add code cell">
                         </button>
                     </div>
                     <!-- additional utilities buttons container ends -->
                     
                     <!-- this is the input part, code will be enterred in textarea and pre > code tag will be used for syntax highlighting -->
-                    <textarea class="code-input" wrap="off" cols="" rows="2" oninput="update(this.value);"></textarea>
-                    <pre class="highlight-area">
-                        <code class="highlighted-code highlight-area language-cpp"></code>
+                    <!-- since this is inside code-cell-1, so 1 is appended at the last of the class name to make a unique id -->
+                    <!-- the oninput attribute gets activated when the text inside textarea is changed, the update function will simply copy the text of textarea and paste it in the <code> tag -->
+                    <textarea id="code-input-1" class="code-input" wrap="off" cols="" rows="2" oninput="update(this.value, this.id);" onfocus="code_cell_focus(this.id, true);" onblur="code_cell_focus(this.id, false);"></textarea>
+                    <pre id="highlight-area-1" class="highlight-area">  <!-- since this is inside code-cell-1, so 1 is appended at the last of the class name to make a unique id -->
+                        <code id="highlighted-code-1" class="highlighted-code highlight-area language-cpp"></code>  <!-- since this is inside code-cell-1, so 1 is appended at the last of the class name to make a unique id -->
                     </pre>
                     <!-- input part ends -->
 
                     <!-- this is our output container, any output of the above code cell should be put inside it -->
-                    <div class="output"></div>
+                    <div id="output-1" class="output"></div>  <!-- since this is inside code-cell-1, so 1 is appended at the last of the class name to make a unique id -->
                     <!-- output container ends -->
                 </div>
                 <!-- input output block container ends -->
@@ -120,5 +122,6 @@
     <!-- --------------------------------- our workspace container ends --------------------------------------------------- -->
     <script src="../js/code-cell.js"></script> <!-- javascript code for handling code cells -->
     <script src="../highlight/highlight.min.js"></script> <!-- javascript for syntax highlighting -->
+    <script>hljs.highlightAll();</script>
 </body>
 </html>

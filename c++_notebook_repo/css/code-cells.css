@@ -58,7 +58,6 @@
     z-index: 4;
     background-color: black;
     border: 1px solid white;
-    /* display: none; */
 }
 .code-cell-other-util-btn button:hover{
     cursor: pointer;
@@ -115,4 +114,44 @@
 }
 .code-input:focus ~ .output{
     border: 3px solid red;
+}
+.markdown{ /* it is for our markdown cell */
+    margin: 40px 40px 10px 10px;
+    width: calc(100% - 50px);
+    min-height: 70px;
+    font-size: 25px;
+    color: white;
+    border: 1px solid white;
+    padding: 0px 20px;
+    position: relative;
+}
+.markdown-btn img{
+    width: 30px;
+}
+.markdown-btn button{
+    background-color: transparent;
+    border: none;
+    padding: 0px 10px;
+}
+.markdown-btn{
+    position: absolute; /* setting its position W.R.T. its parent */
+    top: -20px;
+    right: 50px;
+    z-index: 4;
+    background-color: black;
+    border: 1px solid white;
+}
+.markdown-btn button:hover{
+    cursor: pointer;
+}
+.markdown-btn button:hover > img{ /* during hovering over the buttons, the colour of button should change */
+    filter: invert(50%) sepia(94%) saturate(473%) hue-rotate(72deg) brightness(117%) contrast(100%);
+}
+.markdown-btn button:active > img{ /* also the icon image should shrink a bit */
+    padding: 3px
+}
+.markdown-write{
+    z-index: 3;
+    min-height: 70px;
+    outline: none;
 }
