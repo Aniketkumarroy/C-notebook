@@ -23,7 +23,7 @@ if (output.innerHTML == ""){ // if thre is no content inside the output         
 }                                                                                                                                       //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// this function will copy inputs from textarea and paste them in code tag   //
+// this function will copy inputs from textarea and paste them in code tag (https://css-tricks.com/creating-an-editable-textarea-that-supports-syntax-highlighted-code/)  //
 function update(text, id) {
     let result_element = document.getElementById("highlighted-code-" + id.charAt(id.length - 1));       // since we had id, we can extract its last character to know the unique no. associated with that element. then we will just append this unique no. to its class to get its id
     // Update code
@@ -59,8 +59,18 @@ function add_cells_below() { // this will add code cells by updating the innerHT
                                     <button title='delete cell' onclick='delete_code_cell(this.parentNode.id);'>
                                         <img src='../images/delete-icon.png' alt='delete cell'>
                                     </button>
-                                    <button title='add markdown cell'>
-                                        <img src='../images/markdown-cell.png' alt='add markdown cell'>
+                                    <button title="add markdown cell down">
+                                        <img src="../images/add_markdown_cell_down.png" alt="add markdown cell down">
+                                    </button>
+                                    <button title="add markdown cell up">
+                                        <img src="../images/add_markdown_cell_up.png" alt="add markdown cell up">
+                                    </button>
+                                    </button>
+                                    <button title="add code cell down">
+                                        <img src="../images/add_code_cell_down.png" alt="add code cell down">
+                                    </button>
+                                    <button title="add codecell up">
+                                        <img src="../images/add_code_cell_up.png" alt="add code cell up">
                                     </button>
                                     <button title='toggle code editing' onclick="toggle_code_edit(this.parentNode.id);">
                                         <img src='../images/code-cell.png' alt='add code cell'>
@@ -69,7 +79,7 @@ function add_cells_below() { // this will add code cells by updating the innerHT
                                 <!-- additional utilities buttons container ends -->
                                 
                                 <!-- this is the input part, code will be enterred in textarea and pre > code tag will be used for syntax highlighting -->
-                                <textarea id="code-input-` + no_of_code_cells + `" class='code-input' wrap='off' cols='' rows='2' oninput='update(this.value, this.id);' onfocus="code_cell_focus(this.id, true);" onblur="code_cell_focus(this.id, false);"></textarea>
+                                <textarea id="code-input-` + no_of_code_cells + `" class='code-input' wrap='off' cols='' rows='2' oninput='update(this.value, this.id);' onfocus="code_cell_focus(this.id, true);" onblur="code_cell_focus(this.id, false);" spellcheck="false"></textarea>
                                 <pre id='highlight-area-` + no_of_code_cells + `' class='highlight-area'>
                                     <code id='highlighted-code-` + no_of_code_cells + `' class='highlighted-code highlight-area language-cpp'></code>
                                 </pre>
@@ -111,6 +121,19 @@ function add_markdown_cell(){ // adding markdown cell
                         <div class="markdown-btn" id="markdown-btn-` + no_of_markdown_cells + `">
                             <button title="delete cell" onclick="delete_markdown_cell(this.parentNode.id);">
                                 <img src="../images/delete-icon.png" alt="delete cell">
+                            </button>
+                            <button title="add markdown cell down">
+                                <img src="../images/add_markdown_cell_down.png" alt="add markdown cell down">
+                            </button>
+                            <button title="add markdown cell up">
+                                <img src="../images/add_markdown_cell_up.png" alt="add markdown cell up">
+                            </button>
+                            </button>
+                            <button title="add code cell down">
+                                <img src="../images/add_code_cell_down.png" alt="add code cell down">
+                            </button>
+                            <button title="add codecell up">
+                                <img src="../images/add_code_cell_up.png" alt="add code cell up">
                             </button>
                             <button title="Edit markdown cell" onclick="make_markdown_editable(this.parentNode.id)">
                                 <img src="../images/markdown-cell.png" alt="Edit markdown cell">

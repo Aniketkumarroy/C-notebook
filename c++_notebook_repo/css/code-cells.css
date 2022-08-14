@@ -43,7 +43,7 @@
     filter: invert(100%); /* changing its black colour to white foe better visibility */
 }
 .code-cell-other-util-btn img{
-    width: 30px; /* width of image icons of our button */
+    height: 30px; /* width of image icons of our button */
 
 }
 .code-cell-other-util-btn button{ /* styling of our buttons */
@@ -126,7 +126,7 @@
     position: relative;
 }
 .markdown-btn img{
-    width: 30px;
+    height: 30px;
 }
 .markdown-btn button{
     background-color: transparent;

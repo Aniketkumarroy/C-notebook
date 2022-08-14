@@ -91,9 +91,19 @@
                         <button title="delete cell" onclick="delete_code_cell(this.parentNode.id);"> <!-- this will delete this code cell -->
                             <img src="../images/delete-icon.png" alt="delete cell">
                         </button>
-                        <button title="add markdown cell">
-                            <img src="../images/markdown-cell.png" alt="add markdown cell">
+                        <button title="add markdown cell down">
+                            <img src="../images/add_markdown_cell_down.png" alt="add markdown cell down">
                         </button>
+                        <button title="add markdown cell up">
+                            <img src="../images/add_markdown_cell_up.png" alt="add markdown cell up">
+                        </button>
+                    </button>
+                    <button title="add code cell down">
+                        <img src="../images/add_code_cell_down.png" alt="add code cell down">
+                    </button>
+                    <button title="add codecell up">
+                        <img src="../images/add_code_cell_up.png" alt="add code cell up">
+                    </button>
                         <button title="toggle code editing" onclick="toggle_code_edit(this.parentNode.id);"> <!-- this will toggle the editable property of the input cell -->
                             <img src="../images/code-cell.png" alt="add code cell">
                         </button>
@@ -103,7 +113,7 @@
                     <!-- this is the input part, code will be enterred in textarea and pre > code tag will be used for syntax highlighting -->
                     <!-- since this is inside code-cell-1, so 1 is appended at the last of the class name to make a unique id -->
                     <!-- the oninput attribute gets activated when the text inside textarea is changed, the update function will simply copy the text of textarea and paste it in the <code> tag -->
-                    <textarea id="code-input-1" class="code-input" wrap="off" cols="" rows="2" oninput="update(this.value, this.id);" onfocus="code_cell_focus(this.id, true);" onblur="code_cell_focus(this.id, false);"></textarea>
+                    <textarea id="code-input-1" class="code-input" wrap="off" cols="" rows="2" oninput="update(this.value, this.id);" onfocus="code_cell_focus(this.id, true);" onblur="code_cell_focus(this.id, false);" spellcheck="false"></textarea>
                     <pre id="highlight-area-1" class="highlight-area">  <!-- since this is inside code-cell-1, so 1 is appended at the last of the class name to make a unique id -->
                         <code id="highlighted-code-1" class="highlighted-code highlight-area language-cpp"></code>  <!-- since this is inside code-cell-1, so 1 is appended at the last of the class name to make a unique id -->
                     </pre>
