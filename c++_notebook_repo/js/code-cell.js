@@ -36,7 +36,7 @@ function update(text, id) {
     result_element.style.paddingLeft = '20px';
     result_element.style.paddingRight = '20px';
 }
-function add_cells_below() { // this will add code cells by updating the innerHTML of editor
+function add_code_cell(id, position, caller) { // this will add code cells(id- id of the caller div, position-whether it produce new cell over the below the caller, caller- whether it is called by code cell or markdown cell)
     no_of_code_cells++; // update it so that we can give it a unique id no.
     // code cell html code
     let code_cell =     `<div id ='code-cell-` + no_of_code_cells + `' class='code-cell' onmouseover="additional_utilities(this.id,'block');" onmouseleave="additional_utilities(this.id,'none');">
@@ -59,17 +59,17 @@ function add_cells_below() { // this will add code cells by updating the innerHT
                                     <button title='delete cell' onclick='delete_code_cell(this.parentNode.id);'>
                                         <img src='../images/delete-icon.png' alt='delete cell'>
                                     </button>
-                                    <button title="add markdown cell down">
+                                    <button title="add markdown cell down" onclick="add_markdown_cell(this.parentNode.id, 'down', 'code')">
                                         <img src="../images/add_markdown_cell_down.png" alt="add markdown cell down">
                                     </button>
-                                    <button title="add markdown cell up">
+                                    <button title="add markdown cell up" onclick="add_markdown_cell(this.parentNode.id, 'up', 'code')">
                                         <img src="../images/add_markdown_cell_up.png" alt="add markdown cell up">
                                     </button>
                                     </button>
-                                    <button title="add code cell down">
+                                    <button title="add code cell down" onclick="add_code_cell(this.parentNode.id, 'down', 'code');">
                                         <img src="../images/add_code_cell_down.png" alt="add code cell down">
                                     </button>
-                                    <button title="add codecell up">
+                                    <button title="add codecell up" onclick="add_code_cell(this.parentNode.id, 'up', 'code');">
                                         <img src="../images/add_code_cell_up.png" alt="add code cell up">
                                     </button>
                                     <button title='toggle code editing' onclick="toggle_code_edit(this.parentNode.id);">
@@ -91,8 +91,16 @@ function add_cells_below() { // this will add code cells by updating the innerHT
                             </div>
                             <!-- input output block container ends -->
                         </div>`;
-    editor = document.querySelector(".editor");
-    editor.innerHTML = editor.innerHTML + "\n" + code_cell;
+    if(id == undefined){ // the function is called by the global code button at the top
+        let editor = document.querySelector(".editor");
+        editor.innerHTML = editor.innerHTML + "\n" + code_cell;
+    }
+    else{ // the function is called by a local cell
+        let container = (caller == "code")?"code-cell-":"markdown-"; // this is to assign proper id according to our id convention and based on the caller div is code cell or markdown cell
+        let new_cell = document.getElementById(container + id.charAt(id.length - 1));
+        let pos = (position == "up")? "beforebegin": "afterend";
+        new_cell.insertAdjacentHTML(pos, code_cell);
+    }
     let output = document.getElementById("output-" + no_of_code_cells);
     if (output.innerHTML == ""){ // if output is empty
         output.style.display = "none"; // display none
@@ -114,7 +122,7 @@ function delete_code_cell(id){ // delete code cell
     delete cell_track[id.charAt(id.length - 1)]; // since code cell is deleted, no need to have border highlighting for it
 }
 
-function add_markdown_cell(){ // adding markdown cell
+function add_markdown_cell(id, position, caller){ // adding markdown cell(id- id of the caller div, position-whether it produce new cell over the below the caller, caller- whether it is called by code cell or markdown cell)
     no_of_markdown_cells++; // update it everytime we produce a new markdown cell to give all of them a unique no.
     // our mardown cell html
     let markdown = `<div class="markdown" id="markdown-` + no_of_markdown_cells + `" onmouseover="markdown_btn_visibility(this.id, 'initial');" onmouseleave="markdown_btn_visibility(this.id, 'none');">
@@ -122,17 +130,17 @@ function add_markdown_cell(){ // adding markdown cell
                             <button title="delete cell" onclick="delete_markdown_cell(this.parentNode.id);">
                                 <img src="../images/delete-icon.png" alt="delete cell">
                             </button>
-                            <button title="add markdown cell down">
+                            <button title="add markdown cell down" onclick="add_markdown_cell(this.parentNode.id, 'down', 'markdown')">
                                 <img src="../images/add_markdown_cell_down.png" alt="add markdown cell down">
                             </button>
-                            <button title="add markdown cell up">
+                            <button title="add markdown cell up" onclick="add_markdown_cell(this.parentNode.id, 'up', 'markdown')">
                                 <img src="../images/add_markdown_cell_up.png" alt="add markdown cell up">
                             </button>
                             </button>
-                            <button title="add code cell down">
+                            <button title="add code cell down" onclick="add_code_cell(this.parentNode.id, 'down', 'markdown');">
                                 <img src="../images/add_code_cell_down.png" alt="add code cell down">
                             </button>
-                            <button title="add codecell up">
+                            <button title="add codecell up" onclick="add_code_cell(this.parentNode.id, 'up', 'markdown');">
                                 <img src="../images/add_code_cell_up.png" alt="add code cell up">
                             </button>
                             <button title="Edit markdown cell" onclick="make_markdown_editable(this.parentNode.id)">
@@ -141,8 +149,16 @@ function add_markdown_cell(){ // adding markdown cell
                         </div>
                         <div class="markdown-write" id="markdown-write-` + no_of_markdown_cells + `" contentEditable = "true" onblur="make_markdown_non_editable(this.id)"></div>
                     </div>`
-    editor = document.querySelector(".editor");
-    editor.innerHTML = editor.innerHTML + "\n" + markdown;
+    if(id == undefined){ // the function is called by the global code button at the top
+        let editor = document.querySelector(".editor");
+        editor.innerHTML = editor.innerHTML + "\n" + markdown;
+    }
+    else{ // the function is called by a local cell
+        let container = (caller == "code")?"code-cell-":"markdown-"; // this is to assign proper id according to our id convention and based on the caller div is code cell or markdown cell
+        let new_cell = document.getElementById(container + id.charAt(id.length - 1));
+        let pos = (position == "up")? "beforebegin": "afterend";
+        new_cell.insertAdjacentHTML(pos, markdown);
+    }
 }
 function delete_markdown_cell(id){ // deleting markdown cell
     let markdown_cell = document.getElementById("markdown-" + id.charAt(id.length - 1))

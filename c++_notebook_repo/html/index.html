@@ -43,7 +43,7 @@
         <div class="editor">
             <!-- topmost of editor, will contain buttons like run, stop e.t.c and also a language select area in future versions(c/c++) -->
             <div class="options">
-                <button title="add code cell" class="btn" onclick="add_cells_below();"> <!-- this function will add extra code cells below at the end of the contents of editor container -->
+                <button title="add code cell" class="btn" onclick="add_code_cell();"> <!-- this function will add extra code cells below at the end of the contents of editor container -->
                     <img class="code-icon-btn-img" src="../images/add-icon.png" alt="add code cells">
                     Code
                 </button>
@@ -91,17 +91,17 @@
                         <button title="delete cell" onclick="delete_code_cell(this.parentNode.id);"> <!-- this will delete this code cell -->
                             <img src="../images/delete-icon.png" alt="delete cell">
                         </button>
-                        <button title="add markdown cell down">
+                        <button title="add markdown cell down" onclick="add_markdown_cell(this.parentNode.id, 'down', 'code')">
                             <img src="../images/add_markdown_cell_down.png" alt="add markdown cell down">
                         </button>
-                        <button title="add markdown cell up">
+                        <button title="add markdown cell up" onclick="add_markdown_cell(this.parentNode.id, 'up', 'code')">
                             <img src="../images/add_markdown_cell_up.png" alt="add markdown cell up">
                         </button>
                     </button>
-                    <button title="add code cell down">
+                    <button title="add code cell down" onclick="add_code_cell(this.parentNode.id, 'down', 'code');">
                         <img src="../images/add_code_cell_down.png" alt="add code cell down">
                     </button>
-                    <button title="add codecell up">
+                    <button title="add codecell up" onclick="add_code_cell(this.parentNode.id, 'up', 'code');">
                         <img src="../images/add_code_cell_up.png" alt="add code cell up">
                     </button>
                         <button title="toggle code editing" onclick="toggle_code_edit(this.parentNode.id);"> <!-- this will toggle the editable property of the input cell -->
